@@ -33,16 +33,6 @@ def docxTohtmlwithClasses(input_filename,output_filename,outputfilename):
 		hr_tag = soup.new_tag("hr", attrs={'class': 'listColor'})
 		each_olTag.insert_after(hr_tag)
 	
-	for eachLItag in ul_tag:
-		for liTAG in eachLItag.findAll('li'):
-			# print(liTAG)
-			liTAG['class'] = 'slideTitle-False'
-			
-	for eachOLtag in ol_tag:
-		for OLTAG in eachOLtag.findAll('li'):
-			# print(OLTAG)
-			OLTAG['class'] = 'slideTitle-False'
-	
 	### Table ###
 	table_tag = soup.findAll('table')
 	for each_tableTag in table_tag:
@@ -248,13 +238,12 @@ def htmlTojson(outputfilename):
 	presentation = []
 	dic_data = {}
 	testLst = []
-	for i in soup.findAll(['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6','li']):
+	for i in soup.findAll(['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'ul', 'ol']):
 		testLst.append(i)
 	titlelst = []
 	sentlst = []
 	otherlst = []
 	for i in range(len(testLst)):
-		# print(testLst[i])
 		if testLst[i]['class'] == ['slideTitle-True']:
 			titlelst.append(i)
 		elif testLst[i]['class'] == ['slideTitle-False']:
@@ -272,7 +261,6 @@ def htmlTojson(outputfilename):
 		for i in range(titlelst[m] + 1, titlelst[m + 1]):
 			lst.append(testLst[i].text)
 		dic_data['sentences'] = lst
-		# print(dic_data)
 		lst = []
 		presentation.append(dic_data)
 		dic_data = {}
