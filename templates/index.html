@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Add text and Get Json!</title>
+    <script src="https://cdn.ckeditor.com/ckeditor5/25.0.0/classic/ckeditor.js"></script>
+    <style>
+        .jsonBtn {
+          border: none;
+          color: white;
+          padding: 15px 32px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+          margin: 4px 2px;
+          cursor: pointer;
+        }
+
+.jsonBtn {background-color: #4CAF50;} /* Green */
+
+</style>
+</head>
+<body>
+    <h1>Add the textual information below::</h1>
+    <form method="post">
+<!--        <div id="editor"></div>-->
+        <textarea id="summernote" name="editordata" rows="40" cols="50" placeholder="Place the text here"></textarea>
+<!--        <div id="summernote" name="editordata" ></div>-->
+        <textarea id="filename" name="filenamedata" placeholder="Mention Filename" style="margin: 0px; width: 1800px; height: 53px;"></textarea>
+        <button class="jsonBtn">Generate JSON file!</button>
+    </form>
+
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#summernote' ) )
+            .catch( error => {
+                console.error( error );
+            } );
+    </script>
+</body>
+</html>
